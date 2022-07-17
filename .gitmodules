@@ -1,0 +1,12 @@
+[submodule "dep/nanovg"]
+	path = dep/nanovg
+	url = https://github.com/inniyah/nanovg.git
+[submodule "dep/stb"]
+	path = dep/stb
+	url = https://github.com/nothings/stb.git
+[submodule "dep/glfw-3.3.7-mingw-bin"]
+	path = dep/glfw-3.3.7-mingw-bin
+	url = https://github.com/civcode/glfw-3.3.7-mingw-bin.git
+[submodule "dep/glew-2.1.0-mingw-bin"]
+	path = dep/glew-2.1.0-mingw-bin
+	url = https://github.com/civcode/glew-2.1.0-mingw-bin.git
