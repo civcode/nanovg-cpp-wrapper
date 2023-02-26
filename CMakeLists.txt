@@ -10,9 +10,11 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 set(CMAKE_BUILD_TYPE debug)
 
+set(CXX_STANDARD 17)
+
 add_definitions(-DNANOVG_GL3)
 add_definitions(-DNANOVG_USE_GLEW)
-#add_definitions(-DDEMO_MSAA)
+add_definitions(-DDEMO_MSAA)
 
 
 if (WIN32)
@@ -33,13 +35,12 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/dep/nanovg/example
     ${PROJECT_SOURCE_DIR}/dep
     ${PROJECT_SOURCE_DIR}/include
+
+    if (WIN32)
+        ${PROJECT_SOURCE_DIR}/dep/glew-2.1.0-mingw-bin/glew-2.1.0/include
+    endif (WIN32)
 )
 
-if (WIN32)
-    include_directories(
-        ${PROJECT_SOURCE_DIR}/dep/glew-2.1.0-mingw-bin/glew-2.1.0/include
-    )
-endif (WIN32)
 
 set(nanovg_SRC
     ${PROJECT_SOURCE_DIR}/dep/nanovg/src/nanovg.c

@@ -19,6 +19,7 @@ NVGcontext * Draw::vg_ = nullptr;
 void Draw::set_nvgContext(NVGcontext *ctx) {
     vg_ = ctx;
     Shape::set_nvgContext(ctx);
+    
 }
 
 void Draw::setup() {
@@ -26,6 +27,8 @@ void Draw::setup() {
         //nvg::createContextGL(nvg::NVG_ANTIALIAS | nvg::NVG_STENCIL_STROKES | nvg::NVG_DEBUG)
         nvg::createContextGL(nvg::NVG_ANTIALIAS | nvg::NVG_DEBUG)
         );
+
+    Shape::setup(nanovg_);
 
     //int ret = nanovg_->createFont("sans", std::string("../example/Roboto-Regular.ttf"));
     if (nanovg_->createFont("sans", std::string("../dep/nanovg/example/Roboto-Regular.ttf")) != 0) {
@@ -36,6 +39,7 @@ void Draw::setup() {
 
 void Draw::test() {
     auto& vg = *nanovg_;
+
 
     vg.beginFrame(480, 480, 1);
     vg.save();
@@ -51,7 +55,7 @@ void Draw::test() {
     //vg.moveTo(60, 120);
     vg.translate(80, 120);
     static float rot = 0;
-    vg.rotate(rot);
+    //vg.rotate(rot);
     rot += 0.1;
     vg.fontSize(25.0);
     vg.fontFace("sans");
@@ -66,7 +70,7 @@ void Draw::test() {
 
 void Draw::draw() {
 
-    static int n = 1000;
+    static int n = 500;
     static vector<Circle> circles;
 
     std::random_device rd;
@@ -82,17 +86,20 @@ void Draw::draw() {
             float r = rand_col(mt);
             float g = rand_col(mt);
             float b = rand_col(mt);
-            int rad = 5;
+            int rad = 3;
             circles.push_back(Circle(x, y, rad, Color(r,g,b)));
         }  
 
     }
 
-    if (true) {
+    if (1) {
         for (auto &c : circles) {
-            std::uniform_int_distribution<int> delta(-1, 1);
-            int dx = delta(mt);
-            int dy = delta(mt);
+            // std::uniform_int_distribution<int> delta(-1, 1);
+            // int dx = delta(mt);
+            // int dy = delta(mt);
+            std::uniform_real_distribution<float> delta(0, 1);
+            float dx = (delta(mt)-0.5)*0.50;
+            float dy = (delta(mt)-0.5)*0.50;
             auto [x,y] = c.position();
             c.set_position(x+dx, y+dy);
         }

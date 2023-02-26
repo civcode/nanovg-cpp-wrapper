@@ -145,7 +145,8 @@ int main()
 #ifdef DEMO_MSAA
 	glfwWindowHint(GLFW_SAMPLES, 4);
 #endif
-	window = glfwCreateWindow(480, 480, "NanoVG", NULL, NULL);
+	//window = glfwCreateWindow(480, 480, "NanoVG", NULL, NULL);
+	window = glfwCreateWindow(640, 640, "NanoVG", NULL, NULL);
 	if (!window) {
 		glfwTerminate();
 		return -1;
@@ -190,8 +191,8 @@ int main()
 		return -1;
 	}
 
-	//glfwSwapInterval(1);
-	glfwSwapInterval(0);
+	//glfwSwapInterval(1); // 60 FPS
+	glfwSwapInterval(0); // max. FPS
 
 	initGPUTimer(&gpuTimer);
 
